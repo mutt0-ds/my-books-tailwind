@@ -10,7 +10,8 @@ export class SidebarComponent implements OnInit {
   books: Book[] = [];
   constructor(private bookService: BookService) {}
   ngOnInit() {
-    this.bookService.readData().subscribe((data: Book[]) => {
+    this.bookService.readData().subscribe(() => console.log('dsd'));
+    this.bookService.selectedBooks$.subscribe((data: Book[]) => {
       this.books = data;
     });
   }

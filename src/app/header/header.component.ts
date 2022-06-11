@@ -8,4 +8,8 @@ export class HeaderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  filterBooks(filter: string | null) {
+    this;
+  }
 }
