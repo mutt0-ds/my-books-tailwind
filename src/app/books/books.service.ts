@@ -8,7 +8,14 @@ import { Book } from './books.component';
 })
 export class BookService {
   private books: Book[] = [];
-  public selectedBooks$ = new Subject<Book[]>();
+  private otherFilters = [
+    '🥳 Narrativa',
+    '🗿 Storia',
+    '💼 Lavoro',
+    '🥐 Nutrizione',
+  ];
+  public filteredBooks$ = new Subject<Book[]>();
+  public selectedBook$ = new Subject<Book>();
 
   constructor(private http: HttpClient) {}
 
@@ -28,34 +35,46 @@ export class BookService {
 
   setBook(books: Book[]) {
     this.books = books;
-    this.selectedBooks$.next(books);
+    this.filteredBooks$.next(books);
   }
 
-  // getBooks() {
-  //   return this.books.slice();
-  // }
+  filterBooks(filter: string[] | string) {
+    if (filter === 'all') {
+      this.filteredBooks$.next(this.books.slice());
+      return;
+    }
 
-  // getBook(index: number) {
-  //   return this.books[index];
-  // }
+    if (filter === 'other') {
+      filter = this.otherFilters;
+    }
+
+    let filteredBooks = this.books
+      .slice()
+      .filter((b: Book) =>
+        (filter as string[]).some((f) => b.tags.includes(f))
+      );
+    this.filteredBooks$.next(filteredBooks);
+  }
 
   convertCSVDataToBook(res: string): any {
     let rows = res.split(/\r\n/).slice(1); // first row is the title
     rows.forEach((r: string) => {
       let bookData = this.CSVParser(r);
 
-      this.books.push(
-        new Book(
-          bookData[0],
-          bookData[1],
-          bookData[2],
-          bookData[3], // parsing con la data
-          bookData[4],
-          bookData[5],
-          bookData[6],
-          bookData[7]?.split(',')
-        )
-      );
+      if (bookData[0]) {
+        this.books.push(
+          new Book(
+            bookData[0],
+            bookData[1],
+            bookData[2],
+            Date.parse(bookData[3]), // parsing con la data
+            bookData[4],
+            bookData[5],
+            bookData[6],
+            bookData[7]?.split(',')
+          )
+        );
+      }
     });
   }
 

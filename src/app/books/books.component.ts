@@ -6,7 +6,7 @@ export class Book {
     public name: string,
     public author: string,
     public cover: string,
-    public date: string,
+    public date: number,
     public recap: string,
     public score: string,
     public status: string,
@@ -19,8 +19,13 @@ export class Book {
   templateUrl: './books.component.html',
 })
 export class BooksComponent implements OnInit {
-  books: Book[] = [];
+  selectedBook!: Book;
   constructor(private bookService: BookService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.bookService.selectedBook$.subscribe((book: Book) => {
+      console.log(book);
+      this.selectedBook = book;
+    });
+  }
 }

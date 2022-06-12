@@ -11,12 +11,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
   constructor(private bookService: BookService) {}
   ngOnInit() {
     this.bookService.readData().subscribe();
-    this.bookService.selectedBooks$.subscribe((data: Book[]) => {
+    this.bookService.filteredBooks$.subscribe((data: Book[]) => {
       this.books = data;
     });
   }
 
   ngOnDestroy(): void {
-    this.bookService.selectedBooks$.unsubscribe();
+    this.bookService.filteredBooks$.unsubscribe();
+  }
+
+  onSelectBook(book: Book) {
+    this.bookService.selectedBook$.next(book);
   }
 }

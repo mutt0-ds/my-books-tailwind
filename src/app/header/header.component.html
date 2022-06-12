@@ -3,16 +3,26 @@
     <h1 class="flex items-center mx-5 text-xl text-blue-500 font-extrabold">
       Davide's Library
     </h1>
-    <i class="icons-wrapper" onclick="filterBooks(null)"
+    <i class="icons-wrapper" (click)="filterBooks('all')"
       ><span class="material-icons">home</span></i
     >
-    <i class="icons-wrapper" onclick="filterBooks('IT')"
+    <i class="icons-wrapper" (click)="filterBooks(['📊 IT'])"
       ><span class="material-icons">computer</span></i
     >
-    <i class="icons-wrapper"><span class="material-icons">psychology</span></i>
     <i class="icons-wrapper"
-      ><span class="material-icons">monetization_on</span></i
+      ><span class="material-icons" (click)="filterBooks(['🧠 Psicologia'])"
+        >psychology</span
+      ></i
     >
-    <i class="icons-wrapper"><span class="material-icons">more</span></i>
+    <i class="icons-wrapper"
+      ><span class="material-icons" (click)="filterBooks(['💰 Economy'])"
+        >monetization_on</span
+      ></i
+    >
+    <i class="icons-wrapper"
+      ><span class="material-icons" (click)="filterBooks('other')"
+        >more</span
+      ></i
+    >
   </div>
 </div>
