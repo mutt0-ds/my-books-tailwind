@@ -69,7 +69,7 @@ export class BookService {
             bookData[2],
             Date.parse(bookData[3]), // parsing con la data
             bookData[4],
-            bookData[5],
+            (bookData[5].match(/⭐️/g) || []).length, // '⭐️⭐️⭐️'  -> 3, counting occurrences
             bookData[6],
             bookData[7]?.split(',')
           )

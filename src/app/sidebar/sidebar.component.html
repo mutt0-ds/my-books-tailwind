@@ -1,4 +1,3 @@
-<!-- TODO: fixa animazione hover vorrei giusto un wiggle -->
 <div
   class="p-4 w-10/12 bg-white border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700"
 >
@@ -19,10 +18,15 @@
             <img
               class="w-8 h-10 shadow-md"
               src="{{ b.cover }}"
-              alt="Cover image"
+              alt="Cover Image"
             />
           </div>
-          <div class="flex-1 min-w-0">
+          <div
+            class="flex-1 min-w-0"
+            [ngStyle]="{
+              'text-decoration': b == selectedBook ? 'underline ' : null
+            }"
+          >
             <p
               class="text-sm font-medium text-gray-900 truncate dark:text-white"
             >
@@ -32,9 +36,7 @@
               {{ b.author }}
             </p>
           </div>
-          <div class="inline-flex items-center" *ngIf="b === selectedBook">
-            SELECTED
-          </div>
+
           <div class="inline-flex items-center" *ngIf="b.date">
             <span class="material-icons text-green-500">check_circle</span>
           </div>

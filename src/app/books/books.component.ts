@@ -8,7 +8,7 @@ export class Book {
     public cover: string,
     public date: number,
     public recap: string,
-    public score: string,
+    public score: number,
     public status: string,
     public tags: string[]
   ) {}

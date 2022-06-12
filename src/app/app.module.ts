@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AngularTiltModule } from 'angular-tilt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
@@ -13,7 +14,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     HeaderComponent,
     BooksComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    AngularTiltModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
