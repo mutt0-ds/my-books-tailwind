@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Subject } from 'rxjs';
+import { map, Subject, tap } from 'rxjs';
 import { Book } from './books.component';
 
 @Injectable({
@@ -8,7 +8,8 @@ import { Book } from './books.component';
 })
 export class BookService {
   private books: Book[] = [];
-  public selectedBooks$!: Subject<Book[]>;
+  public selectedBooks$ = new Subject<Book[]>();
+
   constructor(private http: HttpClient) {}
 
   readData() {
@@ -17,18 +18,26 @@ export class BookService {
       .pipe(
         map((res: any) => {
           this.convertCSVDataToBook(res);
-          this.selectedBooks$.next(this.books);
+          return this.books;
+        }),
+        tap((books: Book[]) => {
+          this.setBook(books);
         })
       );
   }
 
-  getBooks() {
-    return this.books.slice();
+  setBook(books: Book[]) {
+    this.books = books;
+    this.selectedBooks$.next(books);
   }
 
-  getBook(index: number) {
-    return this.books[index];
-  }
+  // getBooks() {
+  //   return this.books.slice();
+  // }
+
+  // getBook(index: number) {
+  //   return this.books[index];
+  // }
 
   convertCSVDataToBook(res: string): any {
     let rows = res.split(/\r\n/).slice(1); // first row is the title

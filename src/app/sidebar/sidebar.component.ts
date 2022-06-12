@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Book } from '../books/books.component';
 import { BookService } from '../books/books.service';
 
@@ -6,13 +6,17 @@ import { BookService } from '../books/books.service';
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   books: Book[] = [];
   constructor(private bookService: BookService) {}
   ngOnInit() {
-    this.bookService.readData().subscribe(() => console.log('dsd'));
+    this.bookService.readData().subscribe();
     this.bookService.selectedBooks$.subscribe((data: Book[]) => {
       this.books = data;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.bookService.selectedBooks$.unsubscribe();
   }
 }
