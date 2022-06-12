@@ -8,6 +8,7 @@ import { BookService } from '../books/books.service';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   books: Book[] = [];
+  selectedBook!: Book;
   constructor(private bookService: BookService) {}
   ngOnInit() {
     this.bookService.readData().subscribe();
@@ -21,6 +22,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   onSelectBook(book: Book) {
+    this.selectedBook = book;
     this.bookService.selectedBook$.next(book);
   }
 }

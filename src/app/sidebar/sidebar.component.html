@@ -1,3 +1,4 @@
+<!-- TODO: fixa animazione hover vorrei giusto un wiggle -->
 <div
   class="p-4 w-10/12 bg-white border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700"
 >
@@ -7,10 +8,10 @@
     </h5>
   </div>
   <div class="flow-root">
-    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+    <ul role="list">
       <li
         *ngFor="let b of books"
-        class="py-3 sm:py-4 relative rounded group"
+        class="py-3 sm:py-4 relative group rounded-md"
         (click)="onSelectBook(b)"
       >
         <div class="flex items-center space-x-4 hover:animate-wiggle">
@@ -18,7 +19,7 @@
             <img
               class="w-8 h-10 shadow-md"
               src="{{ b.cover }}"
-              alt="Neil image"
+              alt="Cover image"
             />
           </div>
           <div class="flex-1 min-w-0">
@@ -30,6 +31,9 @@
             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
               {{ b.author }}
             </p>
+          </div>
+          <div class="inline-flex items-center" *ngIf="b === selectedBook">
+            SELECTED
           </div>
           <div class="inline-flex items-center" *ngIf="b.date">
             <span class="material-icons text-green-500">check_circle</span>
