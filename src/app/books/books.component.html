@@ -1,7 +1,29 @@
-<!-- GUARDA UQA PER EFFETTO CARD https://codepen.io/pieter-biesemans/pen/QWKmXEE -->
 <div class="flex flex-row">
   <app-sidebar></app-sidebar>
 
+  <!-- if nothing is selected -->
+  <div
+    class="fixed top-1/3 left-1/3 w-3/6 h-96 shadow-xl bg-white rounded-lg overflow-hidden"
+    *ngIf="!selectedBook"
+  >
+    <img
+      src="../../assets/books.gif"
+      alt="welcome to my library"
+      width="100%"
+    />
+    <div
+      class="absolute top-1/3 text-white text-center content-center align-middle px-10 py-4"
+    >
+      <div class="font-extrabold text-4xl uppercase">
+        👋 Welcome to my personal Library! Please select a book in the sidebar
+      </div>
+      <div class="text-sm">
+        Made by mutt0-ds with Angular 13 and Tailwind CSS
+      </div>
+    </div>
+  </div>
+
+  <!-- if a book is selected -->
   <div
     class="fixed top-1/3 left-1/3 w-3/6 shadow-xl"
     aTilt
@@ -11,12 +33,8 @@
       <div class="w-1/3 bg-cover object-cover">
         <img class="object-cover h-96" [src]="selectedBook.cover" />
       </div>
-      <div class="w-2/3 p-4">
-        <h1 class="text-gray-900 font-bold text-3xl">
-          {{ selectedBook.name }}
-        </h1>
-        <p class="mt-2 text-gray-600 text-sm">{{ selectedBook.recap }}</p>
 
+      <div class="w-2/3 p-4">
         <!-- score -->
         <div class="flex item-center mt-2" *ngIf="selectedBook.score > 0">
           <svg
@@ -38,23 +56,50 @@
             />
           </svg>
         </div>
-
-        <div class="flex item-center justify-between mt-3">
-          <h1 class="text-gray-700 font-bold text-xl">$220</h1>
-          <button
-            class="px-3 py-2 bg-gray-800 text-white text-xs font-bold uppercase rounded"
-          >
-            Add to Card
-          </button>
-        </div>
-
         <div
-          class="text-xs inline-flex items-center font-bold leading-sm uppercase p-2 mr-2 rounded-full shadow-sm"
+          class="text-sm inline-flex font-bold leading-sm uppercase p-2 mr-2 rounded-full shadow-sm"
           *ngFor="let tag of selectedBook.tags"
         >
           {{ tag }}
         </div>
+
+        <!-- text -->
+        <h1 class="text-gray-900 font-bold text-4xl pt-4">
+          {{ selectedBook.name }}
+        </h1>
+        <h1 class="text-gray-700 font-semibold text-2xl">
+          {{ selectedBook.author }}
+        </h1>
+
+        <p class="mt-2 text-gray-600 text-lg">
+          {{ selectedBook.recap ? selectedBook.recap : "To read..." }}
+        </p>
+
+        <p
+          class="absolute bottom-4 py-2 text-gray-600 text-sm"
+          *ngIf="selectedBook.date"
+        >
+          Read on {{ selectedBook.date?.toISOString()?.substring(0, 10) }}
+        </p>
+        <div class="absolute bottom-4 right-4 flex item-end justify-between">
+          <button
+            (click)="openAmazonLink(selectedBook)"
+            class="search-on-amazon"
+          >
+            Search on Amazon
+          </button>
+        </div>
       </div>
     </div>
   </div>
+</div>
+<div class="fixed bottom-4 right-0">
+  <iframe
+    src="https://ghbtns.com/github-btn.html?user=mutt0-ds&type=follow&count=false&size=small"
+    frameborder="0"
+    scrolling="0"
+    width="170"
+    height="20"
+    title="GitHub"
+  ></iframe>
 </div>

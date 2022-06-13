@@ -9,10 +9,11 @@ import { Book } from './books.component';
 export class BookService {
   private books: Book[] = [];
   private otherFilters = [
-    '🥳 Narrativa',
-    '🗿 Storia',
-    '💼 Lavoro',
-    '🥐 Nutrizione',
+    '🥳 Storytelling',
+    '🗿 History',
+    '💼 Work',
+    '🥐 Nutrition',
+    '🗺 Life',
   ];
   public filteredBooks$ = new Subject<Book[]>();
   public selectedBook$ = new Subject<Book>();
@@ -25,7 +26,7 @@ export class BookService {
       .pipe(
         map((res: any) => {
           this.convertCSVDataToBook(res);
-          return this.books;
+          return this.books.sort((a, b) => (a.name > b.name ? 1 : -1));
         }),
         tap((books: Book[]) => {
           this.setBook(books);
@@ -67,7 +68,7 @@ export class BookService {
             bookData[0],
             bookData[1],
             bookData[2],
-            Date.parse(bookData[3]), // parsing con la data
+            this.dateParser(bookData[3]), // parsing con la data
             bookData[4],
             (bookData[5].match(/⭐️/g) || []).length, // '⭐️⭐️⭐️'  -> 3, counting occurrences
             bookData[6],
@@ -94,5 +95,12 @@ export class BookService {
     if (/,\s*$/.test(text)) row.push('');
 
     return row;
+  }
+
+  dateParser(data: string) {
+    let date = Date.parse(data);
+    if (date) {
+      return new Date(date);
+    } else return null;
   }
 }

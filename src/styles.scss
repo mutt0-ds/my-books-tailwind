@@ -13,4 +13,13 @@
     transition-all duration-300 ease-linear
     cursor-pointer;
   }
+
+  .search-on-amazon {
+    @apply px-3 py-2 text-xs font-bold uppercase bg-gradient-to-r
+    hover:bg-blue-600
+    text-blue-500 hover:text-white
+    rounded-xl
+    transition-all duration-300 ease-linear
+    cursor-pointer;
+  }
 }

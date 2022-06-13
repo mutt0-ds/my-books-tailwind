@@ -6,7 +6,7 @@ export class Book {
     public name: string,
     public author: string,
     public cover: string,
-    public date: number,
+    public date: Date | null,
     public recap: string,
     public score: number,
     public status: string,
@@ -27,5 +27,10 @@ export class BooksComponent implements OnInit {
       console.log(book);
       this.selectedBook = book;
     });
+  }
+
+  openAmazonLink(selectedBook: Book) {
+    let url = `s?k=${encodeURIComponent(selectedBook.name)}`;
+    window.open(`https://www.amazon.com/${url}&i=stripbooks`);
   }
 }
