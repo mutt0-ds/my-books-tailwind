@@ -3,24 +3,41 @@
     <h1 class="flex items-center mx-5 text-xl text-blue-500 font-extrabold">
       Davide's Library
     </h1>
-    <i class="icons-wrapper" (click)="filterBooks('all')"
-      ><span class="material-icons">home</span></i
+    <i
+      class="icons-wrapper"
+      (click)="filterBooks('all')"
+      [class.icons-selected]="selectedIcon === 'all'"
+      ><span class="material-icons" [tooltip]="'Select all Books'"
+        >home</span
+      ></i
     >
-    <i class="icons-wrapper" (click)="filterBooks(['📊 IT'])"
-      ><span class="material-icons">computer</span></i
+    <i
+      class="icons-wrapper"
+      (click)="filterBooks(['📊 IT'])"
+      [class.icons-selected]="selectedIcon === '📊 IT'"
+      ><span class="material-icons" [tooltip]="'📊 IT Books'">computer</span></i
     >
-    <i class="icons-wrapper"
-      ><span class="material-icons" (click)="filterBooks(['🧠 Psychology'])"
+    <i
+      class="icons-wrapper"
+      (click)="filterBooks(['🧠 Psychology'])"
+      [class.icons-selected]="selectedIcon === '🧠 Psychology'"
+      ><span class="material-icons" [tooltip]="'🧠 Psychology Books'"
         >psychology</span
       ></i
     >
-    <i class="icons-wrapper"
-      ><span class="material-icons" (click)="filterBooks(['💰 Economy'])"
+    <i
+      class="icons-wrapper"
+      (click)="filterBooks(['💰 Economy'])"
+      [class.icons-selected]="selectedIcon === '💰 Economy'"
+      ><span class="material-icons" [tooltip]="'💰 Economy Books'"
         >monetization_on</span
       ></i
     >
-    <i class="icons-wrapper"
-      ><span class="material-icons" (click)="filterBooks('other')"
+    <i
+      class="icons-wrapper"
+      (click)="filterBooks('other')"
+      [class.icons-selected]="selectedIcon === 'other'"
+      ><span class="material-icons" [tooltip]="'Select other Books'"
         >more</span
       ></i
     >
