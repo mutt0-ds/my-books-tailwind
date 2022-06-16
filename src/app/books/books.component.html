@@ -1,7 +1,7 @@
 <div class="flex flex-row">
   <!-- if nothing is selected -->
   <div
-    class="fixed md:top-1/3 sm:right-2 lg:left-1/3 md:w-3/6 md:h-96 w-screen shadow-xl bg-white rounded-lg overflow-hidden z-10"
+    class="fixed md:top-1/3 sm:right-2 lg:left-1/3 md:w-3/6 md:h-96 h-auto w-screen shadow-xl bg-white rounded-lg overflow-hidden z-10"
     *ngIf="!selectedBook"
   >
     <img
@@ -24,7 +24,7 @@
 
   <!-- if a book is selected -->
   <div
-    class="fixed md:top-1/3 md:left-1/3 md:w-3/6 md:h-96 w-screen shadow-xl bg-white rounded-lg overflow-hidden z-10"
+    class="fixed md:top-1/3 md:left-1/3 md:w-3/6 md:h-96 h-auto w-screen shadow-xl bg-white rounded-lg overflow-hidden z-10"
     aTilt
     *ngIf="selectedBook"
   >
@@ -35,7 +35,7 @@
 
       <div class="w-2/3 p-4">
         <!-- score -->
-        <div class="flex item-center mt-2" *ngIf="selectedBook.score > 0">
+        <div class="flex item-center md:mt-2" *ngIf="selectedBook.score > 0">
           <svg
             class="w-2 h-2 md:w-5 md:h-5 fill-current text-yellow-500"
             viewBox="0 0 24 24"
@@ -73,7 +73,7 @@
         </h1>
 
         <p
-          class="md:mt-2 text-gray-600 lg:text-lg text-sm line-clamp-2 sm:line-clamp-3"
+          class="md:mt-2 text-gray-600 lg:text-lg text-sm line-clamp-2 sm:line-clamp-none"
         >
           {{ selectedBook.recap ? selectedBook.recap : "To read..." }}
         </p>
