@@ -1,9 +1,7 @@
 <div class="flex flex-row">
-  <app-sidebar></app-sidebar>
-
   <!-- if nothing is selected -->
   <div
-    class="fixed md:top-1/3 md:left-1/3 md:w-3/6 md:h-96 w-screen shadow-xl bg-white rounded-lg overflow-hidden"
+    class="fixed md:top-1/3 sm:right-2 lg:left-1/3 md:w-3/6 md:h-96 w-screen shadow-xl bg-white rounded-lg overflow-hidden z-10"
     *ngIf="!selectedBook"
   >
     <img
@@ -15,7 +13,7 @@
     <div
       class="absolute top-1/3 text-gray-800 text-center content-center align-middle"
     >
-      <div class="font-extrabold lg:text-4xl text-xl uppercase">
+      <div class="font-extrabold lg:text-4xl text-xl uppercase px-4">
         👋 Welcome to my personal Library! Please select a book in the sidebar
       </div>
       <div class="text-sm pt-4">
@@ -26,20 +24,20 @@
 
   <!-- if a book is selected -->
   <div
-    class="fixed top-1/3 left-1/3 w-3/6 shadow-xl"
+    class="fixed md:top-1/3 md:left-1/3 md:w-3/6 md:h-96 w-screen shadow-xl bg-white rounded-lg overflow-hidden"
     aTilt
     *ngIf="selectedBook"
   >
     <div class="flex bg-white rounded-lg overflow-hidden">
       <div class="w-1/3 bg-cover object-cover">
-        <img class="object-cover h-96" [src]="selectedBook.cover" />
+        <img class="object-cover md:h-96" [src]="selectedBook.cover" />
       </div>
 
       <div class="w-2/3 p-4">
         <!-- score -->
         <div class="flex item-center mt-2" *ngIf="selectedBook.score > 0">
           <svg
-            class="w-5 h-5 fill-current text-yellow-500"
+            class="w-2 h-2 md:w-5 md:h-5 fill-current text-yellow-500"
             viewBox="0 0 24 24"
             *ngFor="let r of [].constructor(selectedBook.score)"
           >
@@ -48,7 +46,7 @@
             />
           </svg>
           <svg
-            class="w-5 h-5 fill-current text-gray-500"
+            class="w-2 h-2 md:w-5 fill-current text-gray-500"
             viewBox="0 0 24 24"
             *ngFor="let r of [].constructor(5 - selectedBook.score)"
           >
@@ -58,31 +56,35 @@
           </svg>
         </div>
         <div
-          class="text-sm inline-flex font-bold leading-sm uppercase p-2 mr-2 rounded-full shadow-sm"
+          class="text-xs md:text-sm inline-flex font-bold uppercase md:p-2 mr-2 rounded-full shadow-sm"
           *ngFor="let tag of selectedBook.tags"
         >
           {{ tag }}
         </div>
 
         <!-- text -->
-        <h1 class="text-gray-900 font-bold lg:text-4xl sm:text-xl pt-4">
+        <h1
+          class="text-gray-900 font-bold lg:text-4xl sm:text-xl text-sm sm:pt-4"
+        >
           {{ selectedBook.name }}
         </h1>
         <h1 class="text-gray-700 font-semibold lg:text-2xl text-sm">
           {{ selectedBook.author }}
         </h1>
 
-        <p class="mt-2 text-gray-600 lg:text-lg text-sm">
+        <p class="md:mt-2 text-gray-600 lg:text-lg text-sm line-clamp-3">
           {{ selectedBook.recap ? selectedBook.recap : "To read..." }}
         </p>
 
         <p
-          class="absolute bottom-4 py-2 text-gray-600 text-xs"
+          class="absolute bottom-4 md:py-2 text-gray-600 text-xs"
           *ngIf="selectedBook.date"
         >
           Read on {{ selectedBook.date?.toISOString()?.substring(0, 10) }}
         </p>
-        <div class="absolute bottom-4 right-4 flex item-end justify-between">
+        <div
+          class="absolute bottom-2 md:bottom-4 right-4 flex item-end justify-between"
+        >
           <button
             (click)="openAmazonLink(selectedBook)"
             class="search-on-amazon"
@@ -93,6 +95,7 @@
       </div>
     </div>
   </div>
+  <app-sidebar></app-sidebar>
 </div>
 <div class="fixed bottom-4 right-0">
   <iframe
