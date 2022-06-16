@@ -3,7 +3,7 @@
 
   <!-- if nothing is selected -->
   <div
-    class="fixed top-1/3 left-1/3 w-3/6 h-96 shadow-xl bg-white rounded-lg overflow-hidden"
+    class="fixed md:top-1/3 md:left-1/3 md:w-3/6 md:h-96 w-screen shadow-xl bg-white rounded-lg overflow-hidden"
     *ngIf="!selectedBook"
   >
     <img
@@ -13,9 +13,9 @@
       width="100%"
     />
     <div
-      class="absolute top-1/3 text-gray-800 text-center content-center align-middle px-10 py-4"
+      class="absolute top-1/3 text-gray-800 text-center content-center align-middle"
     >
-      <div class="font-extrabold text-4xl uppercase">
+      <div class="font-extrabold lg:text-4xl text-xl uppercase">
         👋 Welcome to my personal Library! Please select a book in the sidebar
       </div>
       <div class="text-sm pt-4">
@@ -65,19 +65,19 @@
         </div>
 
         <!-- text -->
-        <h1 class="text-gray-900 font-bold text-4xl pt-4">
+        <h1 class="text-gray-900 font-bold lg:text-4xl sm:text-xl pt-4">
           {{ selectedBook.name }}
         </h1>
-        <h1 class="text-gray-700 font-semibold text-2xl">
+        <h1 class="text-gray-700 font-semibold lg:text-2xl text-sm">
           {{ selectedBook.author }}
         </h1>
 
-        <p class="mt-2 text-gray-600 text-lg">
+        <p class="mt-2 text-gray-600 lg:text-lg text-sm">
           {{ selectedBook.recap ? selectedBook.recap : "To read..." }}
         </p>
 
         <p
-          class="absolute bottom-4 py-2 text-gray-600 text-sm"
+          class="absolute bottom-4 py-2 text-gray-600 text-xs"
           *ngIf="selectedBook.date"
         >
           Read on {{ selectedBook.date?.toISOString()?.substring(0, 10) }}
