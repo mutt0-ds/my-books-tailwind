@@ -46,7 +46,7 @@
             />
           </svg>
           <svg
-            class="w-2 h-2 md:w-5 fill-current text-gray-500"
+            class="w-2 h-2 md:w-5 md:h-5 fill-current text-gray-500"
             viewBox="0 0 24 24"
             *ngFor="let r of [].constructor(5 - selectedBook.score)"
           >
@@ -63,9 +63,7 @@
         </div>
 
         <!-- text -->
-        <h1
-          class="text-gray-900 font-bold lg:text-4xl sm:text-xl text-sm sm:pt-4"
-        >
+        <h1 class="text-gray-900 font-bold lg:text-4xl sm:text-xl text-sm">
           {{ selectedBook.name }}
         </h1>
         <h1 class="text-gray-700 font-semibold lg:text-2xl text-sm">
@@ -79,7 +77,7 @@
         </p>
 
         <p
-          class="absolute bottom-4 md:py-2 text-gray-600 text-xs hidden sm:visible"
+          class="absolute bottom-4 md:py-2 text-gray-600 text-xs hidden sm:flex"
           *ngIf="selectedBook.date"
         >
           Read on {{ selectedBook.date?.toISOString()?.substring(0, 10) }}

@@ -14,6 +14,7 @@ export class BookService {
     '💼 Work',
     '🥐 Nutrition',
     '🗺 Life',
+    '⚛ Scienza',
   ];
   public filteredBooks$ = new Subject<Book[]>();
   public selectedBook$ = new Subject<Book>();
@@ -81,7 +82,7 @@ export class BookService {
 
   CSVParser(text: string): any[] {
     const re_csvRow =
-      /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+      /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^;'"\s\\]*(?:\s+[^;'"\s\\]+)*))\s*(?:;|$)/g;
 
     var row = [];
     text.replace(re_csvRow, function (m0, m1, m2, m3) {
