@@ -7,9 +7,15 @@ The data has been taken from my [Notion](https://notion.so/) account and exporte
 
 - [Check out the Live Demo here](https://my-personal-library.netlify.app/)
 
-## Home
+## Homepage
+
+![demo](https://raw.githubusercontent.com/mutt0-ds/my-books-tailwind/main/src/assets/demo.gif)
+
+![book](https://github.com/mutt0-ds/my-books-tailwind/blob/main/src/assets/selected-book.png?raw=true)
 
 ## Mobile-responsive
+
+![mobile](https://github.com/mutt0-ds/my-books-tailwind/blob/main/src/assets/mobile.png?raw=true)
 
 ## Development server
 
